@@ -37,46 +37,88 @@ function DesignPage() {
         <div className="ps-window" aria-hidden>
           <div className="ps-titlebar">
             <span className="ps-dot r" /><span className="ps-dot y" /><span className="ps-dot g" />
-            <span className="ps-title">Photoshop — Landscape_Poster_v04.psd @ 66.7%</span>
+            <span className="ps-title">Adobe Photoshop 2026  —  Landscape_Poster_v04.psd @ 66.7% (Sun — Glow, RGB/8) *</span>
           </div>
           <div className="ps-menubar">
-            <span>File</span><span>Edit</span><span>Image</span><span>Layer</span>
-            <span>Select</span><span>Filter</span><span>View</span>
+            <span>Ps</span><span>File</span><span>Edit</span><span>Image</span><span>Layer</span>
+            <span>Type</span><span>Select</span><span>Filter</span><span>3D</span><span>View</span><span>Window</span><span>Help</span>
+          </div>
+          <div className="ps-optionsbar">
+            <span className="ps-opt-icon">↖</span>
+            <label><input type="checkbox" defaultChecked readOnly /> Auto-Select:</label>
+            <select defaultValue="Layer"><option>Layer</option></select>
+            <label><input type="checkbox" readOnly /> Show Transform Controls</label>
+            <div className="ps-opt-align">
+              <span>⊢</span><span>⊣</span><span>⊤</span><span>⊥</span><span>┼</span>
+            </div>
           </div>
           <div className="ps-body">
             <div className="ps-tools">
               <div className="ps-tool active" title="Move">↖</div>
               <div className="ps-tool" title="Marquee">▢</div>
               <div className="ps-tool" title="Lasso">⌒</div>
+              <div className="ps-tool" title="Crop">⌗</div>
               <div className="ps-tool" title="Brush">✦</div>
+              <div className="ps-tool" title="Clone">◉</div>
               <div className="ps-tool" title="Eraser">⌫</div>
-              <div className="ps-tool" title="Type">T</div>
               <div className="ps-tool" title="Gradient">▥</div>
+              <div className="ps-tool" title="Type">T</div>
+              <div className="ps-tool" title="Pen">✑</div>
+              <div className="ps-tool" title="Shape">▭</div>
               <div className="ps-tool" title="Hand">✋</div>
+              <div className="ps-tool" title="Zoom">⌖</div>
+              <div className="ps-tool-divider" />
+              <div className="ps-swatches">
+                <span className="ps-sw fg" />
+                <span className="ps-sw bg" />
+              </div>
             </div>
             <div className="ps-canvas-wrap">
+              <div className="ps-ruler ps-ruler-h">
+                {Array.from({ length: 11 }).map((_, i) => <span key={i}>{i * 50}</span>)}
+              </div>
+              <div className="ps-ruler ps-ruler-v">
+                {Array.from({ length: 8 }).map((_, i) => <span key={i}>{i * 50}</span>)}
+              </div>
               <div className="ps-canvas">
                 <div className="ps-poster-text">HORIZON<br/><em>Vol. 04</em></div>
                 <div className="ps-marquee" />
-                <div className="ps-poster-sub">A LANDSCAPE STUDY · 2024</div>
+                <div className="ps-poster-sub">A LANDSCAPE STUDY · 2026</div>
+                <div className="ps-guide ps-guide-v" style={{ left: "50%" }} />
+                <div className="ps-guide ps-guide-h" style={{ top: "33.33%" }} />
+                <div className="ps-guide ps-guide-h" style={{ top: "66.66%" }} />
               </div>
             </div>
             <div className="ps-panels">
-              <div>
-                <div className="ps-panel-title">Layers</div>
-                <div className="ps-layer"><span className="ps-layer-thumb d" /><span>Type — Title</span></div>
-                <div className="ps-layer active"><span className="ps-layer-thumb c" /><span>Sun — Glow</span></div>
-                <div className="ps-layer"><span className="ps-layer-thumb b" /><span>Mountains</span></div>
-                <div className="ps-layer"><span className="ps-layer-thumb" /><span>Sky Gradient</span></div>
+              <div className="ps-panel">
+                <div className="ps-panel-tabs"><span className="active">Layers</span><span>Channels</span><span>Paths</span></div>
+                <div className="ps-blend-row">
+                  <select defaultValue="Normal"><option>Normal</option><option>Multiply</option><option>Screen</option></select>
+                  <span>Opacity: <b>100%</b></span>
+                </div>
+                <div className="ps-layer"><span className="ps-eye">◉</span><span className="ps-layer-thumb d" /><span>Type — Title</span><span className="ps-fx">fx</span></div>
+                <div className="ps-layer active"><span className="ps-eye">◉</span><span className="ps-layer-thumb c" /><span>Sun — Glow</span><span className="ps-fx">fx</span></div>
+                <div className="ps-layer"><span className="ps-eye">◉</span><span className="ps-layer-thumb b" /><span>Mountains</span></div>
+                <div className="ps-layer"><span className="ps-eye">◉</span><span className="ps-layer-thumb" /><span>Sky Gradient</span></div>
+                <div className="ps-layer dim"><span className="ps-eye off">○</span><span className="ps-layer-thumb e" /><span>Background</span><span className="ps-lock">🔒</span></div>
+                <div className="ps-panel-foot">
+                  <span>fx</span><span>◐</span><span>◇</span><span>+</span><span>🗑</span>
+                </div>
               </div>
-              <div>
-                <div className="ps-panel-title">History</div>
+              <div className="ps-panel">
+                <div className="ps-panel-tabs"><span className="active">History</span></div>
                 <div className="ps-history-item">Open</div>
                 <div className="ps-history-item">Gradient Tool</div>
                 <div className="ps-history-item">Layer Mask</div>
+                <div className="ps-history-item">Levels Adjustment</div>
                 <div className="ps-history-item active">Color Balance</div>
               </div>
             </div>
+          </div>
+          <div className="ps-statusbar">
+            <span>66.67%</span>
+            <span>Doc: 24.8M/68.4M</span>
+            <span>► Move Tool</span>
           </div>
         </div>
       </section>
