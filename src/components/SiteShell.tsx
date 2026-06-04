@@ -149,6 +149,7 @@ export function BehanceGrid({ ids }: { ids: (string | number)[] }) {
             loading="lazy"
             allowFullScreen
             allow="clipboard-write"
+            scrolling="no"
             referrerPolicy="strict-origin-when-cross-origin"
           />
         </div>
