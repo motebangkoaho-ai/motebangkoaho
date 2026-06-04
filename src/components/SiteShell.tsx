@@ -137,3 +137,22 @@ export function PortfolioGrid({
     </div>
   );
 }
+
+export function BehanceGrid({ ids }: { ids: (string | number)[] }) {
+  return (
+    <div className="behance-grid">
+      {ids.map((id) => (
+        <div className="behance-embed" key={id}>
+          <iframe
+            src={`https://www.behance.net/embed/project/${id}?ilo0=1`}
+            title={`Behance project ${id}`}
+            loading="lazy"
+            allowFullScreen
+            allow="clipboard-write"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+        </div>
+      ))}
+    </div>
+  );
+}

@@ -1,5 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PortfolioGrid } from "@/components/SiteShell";
+import { BehanceGrid } from "@/components/SiteShell";
+
+const PHOTO_IDS = [
+  248040739, 240134999, 240134813, 225681469,
+  211310643, 211322585, 237352099, 211308895,
+];
 
 export const Route = createFileRoute("/photography")({
   head: () => ({
@@ -58,16 +63,7 @@ function PhotographyPage() {
       </section>
 
       <section id="gallery" style={{ paddingTop: "3rem", background: "var(--bg)" }}>
-        <PortfolioGrid
-          items={[
-            { title: "Portrait Photography", tag: "Professional portraits", kind: "photo" },
-            { title: "Event Photography", tag: "Weddings & corporate", kind: "photo" },
-            { title: "Product Photography", tag: "E-commerce & commercial", kind: "photo" },
-            { title: "Street Photography", tag: "Urban life & candid", kind: "photo" },
-            { title: "Landscape Photography", tag: "Nature & scenic", kind: "photo" },
-            { title: "Fashion Photography", tag: "Editorial & lookbook", kind: "photo" },
-          ]}
-        />
+        <BehanceGrid ids={PHOTO_IDS} />
       </section>
 
       <div className="behance-strip">

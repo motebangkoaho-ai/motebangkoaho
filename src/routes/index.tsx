@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { PortfolioGrid } from "@/components/SiteShell";
+import { BehanceGrid } from "@/components/SiteShell";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -57,14 +57,7 @@ function Home() {
           <h2 className="section-title">Featured <em>Projects</em></h2>
           <p className="section-sub" style={{ margin: "1rem auto 0" }}>A curated selection from photography and design</p>
         </div>
-        <PortfolioGrid
-          items={[
-            { title: "Portrait Session", tag: "Photography", kind: "photo" },
-            { title: "Brand Identity", tag: "Design", kind: "design" },
-            { title: "Event Coverage", tag: "Photography", kind: "photo" },
-            { title: "Poster Design", tag: "Design", kind: "design" },
-          ]}
-        />
+        <BehanceGrid ids={[248040739, 224826159, 240134999, 239807389]} />
       </section>
 
       {/* Behance */}

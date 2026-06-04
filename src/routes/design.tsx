@@ -1,5 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PortfolioGrid } from "@/components/SiteShell";
+import { BehanceGrid } from "@/components/SiteShell";
+
+const DESIGN_IDS = [
+  224826159, 239807389, 191120611, 170004709,
+  175932217, 136472179, 247315693, 247230691,
+];
 
 export const Route = createFileRoute("/design")({
   head: () => ({
@@ -77,16 +82,7 @@ function DesignPage() {
       </section>
 
       <section id="gallery" style={{ paddingTop: "3rem", background: "var(--bg)" }}>
-        <PortfolioGrid
-          items={[
-            { title: "Brand Identity", tag: "Logos & guidelines", kind: "design" },
-            { title: "Print Design", tag: "Posters & brochures", kind: "design" },
-            { title: "Social Media", tag: "Digital graphics", kind: "design" },
-            { title: "Packaging Design", tag: "Product & labels", kind: "design" },
-            { title: "Illustration", tag: "Digital art", kind: "design" },
-            { title: "UI/UX Design", tag: "Web & app", kind: "design" },
-          ]}
-        />
+        <BehanceGrid ids={DESIGN_IDS} />
       </section>
 
       <div className="behance-strip">
