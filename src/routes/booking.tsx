@@ -20,7 +20,7 @@ function BookingPage() {
     const d = new FormData(e.currentTarget);
     const subject = `Booking Request: ${d.get("service")} — ${d.get("firstName")} ${d.get("lastName")}`;
     const body = `Name: ${d.get("firstName")} ${d.get("lastName")}\nEmail: ${d.get("email")}\nPhone: ${d.get("phone") || "Not provided"}\nService: ${d.get("service")}\nDate: ${d.get("date") || "Flexible"}\nBudget: ${d.get("budget") || "Not specified"}\n\n${d.get("message")}`;
-    window.location.href = `mailto:hello@motebangkoaho.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:motebangkoaho@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setTimeout(() => setSubmitting(false), 400);
   }
 
