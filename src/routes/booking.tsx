@@ -20,7 +20,7 @@ function BookingPage() {
     const d = new FormData(e.currentTarget);
     const subject = `Booking Request: ${d.get("service")} — ${d.get("firstName")} ${d.get("lastName")}`;
     const body = `Name: ${d.get("firstName")} ${d.get("lastName")}\nEmail: ${d.get("email")}\nPhone: ${d.get("phone") || "Not provided"}\nService: ${d.get("service")}\nDate: ${d.get("date") || "Flexible"}\nBudget: ${d.get("budget") || "Not specified"}\n\n${d.get("message")}`;
-    window.location.href = `mailto:hello@motebangkoaho.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:motebangkoaho@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setTimeout(() => setSubmitting(false), 400);
   }
 
@@ -49,7 +49,7 @@ function BookingPage() {
           </div>
           <div className="form-group">
             <label htmlFor="phone">Phone Number</label>
-            <input id="phone" name="phone" type="tel" placeholder="+27 XX XXX XXXX" />
+            <input id="phone" name="phone" type="tel" placeholder="0659890120" />
           </div>
         </div>
         <div className="form-group">
@@ -102,11 +102,11 @@ function BookingPage() {
       <div className="contact-row">
         <div className="contact-item">
           <span className="ci-label">Phone</span>
-          <p>+27 XX XXX XXXX</p>
+          <p>0659890120</p>
         </div>
         <div className="contact-item">
           <span className="ci-label">Email</span>
-          <p>hello@motebangkoaho.com</p>
+          <p>motebangkoaho@gmail.com</p>
         </div>
         <div className="contact-item">
           <span className="ci-label">Behance</span>

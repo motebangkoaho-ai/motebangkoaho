@@ -748,3 +748,57 @@ section { padding: 6rem 5%; position: relative; }
   overflow: hidden; scrollbar-width: none;
 }
 .behance-embed iframe::-webkit-scrollbar { display: none; }
+
+/* Books page */
+.books-wrap { max-width: 1200px; margin: 0 auto; padding: 8rem 2rem 6rem; }
+.books-hero {
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem;
+  align-items: center; min-height: 70vh;
+}
+.books-hero-text .section-title { font-size: clamp(2.5rem, 6vw, 4.5rem); margin: 1rem 0; }
+.books-hero-text .section-sub { font-size: 1.25rem; opacity: 0.7; }
+.book-3d { display: flex; justify-content: center; perspective: 1600px; }
+.book {
+  position: relative;
+  width: 260px; height: 380px;
+  transform-style: preserve-3d;
+  transform: rotateY(-28deg) rotateX(6deg);
+  animation: bookFloat 6s ease-in-out infinite;
+  filter: drop-shadow(0 40px 60px rgba(0,0,0,0.45));
+}
+@keyframes bookFloat {
+  0%,100% { transform: rotateY(-28deg) rotateX(6deg) translateY(0); }
+  50% { transform: rotateY(-24deg) rotateX(4deg) translateY(-12px); }
+}
+.book-cover {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #1a1a2a, #3a2f5c 60%, #6b4ea8);
+  border-radius: 2px 8px 8px 2px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 2rem 1.5rem; color: #fff;
+  box-shadow: inset -8px 0 16px rgba(0,0,0,0.4), inset 4px 0 8px rgba(255,255,255,0.06);
+}
+.book-cover::before {
+  content: ""; position: absolute; inset: 12px;
+  border: 1px solid rgba(255,255,255,0.18); border-radius: 2px;
+  pointer-events: none;
+}
+.book-title { font-size: 1.5rem; font-weight: 600; letter-spacing: 0.02em; }
+.book-author { font-size: 0.85rem; opacity: 0.75; letter-spacing: 0.15em; text-transform: uppercase; }
+.book-spine {
+  position: absolute; top: 0; left: 0;
+  width: 24px; height: 100%;
+  transform: translateX(-12px) rotateY(-90deg);
+  transform-origin: right center;
+  background: linear-gradient(90deg, #0e0e1a, #2a2342);
+}
+.book-pages {
+  position: absolute; top: 4px; right: -8px;
+  width: 16px; height: calc(100% - 8px);
+  background: repeating-linear-gradient(180deg, #f5f1e8 0 2px, #d8d2c2 2px 3px);
+  transform: rotateY(90deg); transform-origin: left center;
+}
+@media (max-width: 768px) {
+  .books-hero { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+  .books-wrap { padding: 6rem 1.5rem 4rem; }
+}
