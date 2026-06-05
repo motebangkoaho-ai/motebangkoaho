@@ -102,11 +102,11 @@ function BookingPage() {
       <div className="contact-row">
         <div className="contact-item">
           <span className="ci-label">Phone</span>
-          <p>+27 XX XXX XXXX</p>
+          <p>0659890120</p>
         </div>
         <div className="contact-item">
           <span className="ci-label">Email</span>
-          <p>hello@motebangkoaho.com</p>
+          <p>motebangkoaho@gmail.com</p>
         </div>
         <div className="contact-item">
           <span className="ci-label">Behance</span>
