@@ -49,7 +49,7 @@ function BookingPage() {
           </div>
           <div className="form-group">
             <label htmlFor="phone">Phone Number</label>
-            <input id="phone" name="phone" type="tel" placeholder="+27 XX XXX XXXX" />
+            <input id="phone" name="phone" type="tel" placeholder="0659890120" />
           </div>
         </div>
         <div className="form-group">
