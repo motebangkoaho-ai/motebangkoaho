@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import portrait from "@/assets/motebang-portrait.jpg.asset.json";
+import portrait from "@/assets/motebang-portrait.png.asset.json";
 
 
 export const Route = createFileRoute("/about")({
@@ -22,7 +22,11 @@ function AboutPage() {
     <div className="about-wrap">
       <div className="about-img-block">
         <div className="about-img-frame">
-          <img src={portrait.url} alt="Motebang Koaho portrait" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+          <img
+            src={portrait.url}
+            alt="Motebang Koaho portrait"
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+          />
         </div>
         <div className="about-img-accent" />
       </div>
