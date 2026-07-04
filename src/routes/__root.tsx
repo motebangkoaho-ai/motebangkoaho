@@ -74,6 +74,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "stylesheet", href: siteCss },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Person",
+              "@id": "https://motebangkoaho.lovable.app/#person",
+              name: "Motebang Koaho",
+              jobTitle: "Photographer & Designer",
+              url: "https://motebangkoaho.lovable.app",
+              sameAs: [
+                "https://www.behance.net/euphoriaheart",
+                "https://www.behance.net/motebang-Koaho",
+              ],
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://motebangkoaho.lovable.app/#website",
+              url: "https://motebangkoaho.lovable.app",
+              name: "Motebang Koaho — Photographer & Designer",
+              description: "Portfolio of Motebang Koaho — photography and design.",
+              publisher: { "@id": "https://motebangkoaho.lovable.app/#person" },
+            },
+          ],
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

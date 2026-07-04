@@ -5,8 +5,13 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Motebang Koaho — Photographer & Designer" },
-      { name: "description", content: "Capturing light · Crafting vision. Portrait, event, and product photography paired with bold design." },
+      { name: "description", content: "Capturing light · Crafting vision. Portrait, event, and product photography paired with bold brand and print design." },
+      { property: "og:title", content: "Motebang Koaho — Photographer & Designer" },
+      { property: "og:description", content: "Capturing light · Crafting vision. Portrait, event, and product photography paired with bold brand and print design." },
+      { property: "og:url", content: "https://motebangkoaho.lovable.app/" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://motebangkoaho.lovable.app/" }],
   }),
   component: Home,
 });
@@ -36,7 +41,7 @@ function Home() {
 
         <div className="hero-content">
           <p className="hero-eyebrow">Photographer &amp; Designer</p>
-          <h1 className="hero-name">Motebang<br/><em>Koaho</em></h1>
+          <h1 className="hero-name">Motebang<br/><em>Koaho</em><span className="sr-only"> — Photographer & Designer</span></h1>
           <p className="hero-tagline">Capturing light &nbsp;·&nbsp; Crafting vision</p>
           <div className="hero-buttons">
             <Link to="/photography" className="btn btn-primary">View Photography</Link>

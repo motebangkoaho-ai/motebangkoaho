@@ -1,0 +1,12 @@
+# Motebang Koaho
+
+> Portfolio of Motebang Koaho — photographer and designer crafting portraits, event and product photography alongside bold brand and print design.
+
+## Pages
+
+- [Home](/): Overview of Motebang Koaho's photography and design portfolio.
+- [Photography](/photography): Portrait, event, product, street, landscape and fashion photography.
+- [Design](/design): Brand identity, print, packaging, illustration and UI/UX work.
+- [Books](/books): Upcoming publications — content coming soon.
+- [About](/about): Background, services and skills.
+- [Book Now](/booking): Request a photography or design session.
