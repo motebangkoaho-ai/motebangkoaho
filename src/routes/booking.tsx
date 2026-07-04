@@ -5,8 +5,13 @@ export const Route = createFileRoute("/booking")({
   head: () => ({
     meta: [
       { title: "Book a Session — Motebang Koaho" },
-      { name: "description", content: "Book a photography or design session with Motebang Koaho." },
+      { name: "description", content: "Request a portrait, event, product, wedding, or design booking with Motebang Koaho. Reply within 24 hours." },
+      { property: "og:title", content: "Book a Session — Motebang Koaho" },
+      { property: "og:description", content: "Request a portrait, event, product, wedding, or design booking with Motebang Koaho. Reply within 24 hours." },
+      { property: "og:url", content: "https://motebangkoaho.lovable.app/booking" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://motebangkoaho.lovable.app/booking" }],
   }),
   component: BookingPage,
 });
@@ -28,7 +33,7 @@ function BookingPage() {
     <div className="booking-wrap">
       <div className="booking-header">
         <span className="section-label">Get in Touch</span>
-        <h2 className="section-title">Book a <em>Session</em></h2>
+        <h1 className="section-title">Book a <em>Session</em></h1>
         <p className="section-sub">Fill out the form and I'll get back to you within 24 hours.</p>
       </div>
       <form className="booking-form" onSubmit={onSubmit}>

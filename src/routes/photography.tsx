@@ -10,9 +10,25 @@ export const Route = createFileRoute("/photography")({
   head: () => ({
     meta: [
       { title: "Photography — Motebang Koaho" },
-      { name: "description", content: "Portrait, event, product, street, landscape and fashion photography by Motebang Koaho." },
+      { name: "description", content: "Portrait, event, product, street, landscape and fashion photography by Motebang Koaho — color-graded, refined and true to light." },
       { property: "og:title", content: "Photography — Motebang Koaho" },
+      { property: "og:description", content: "Portrait, event, product, street, landscape and fashion photography by Motebang Koaho — color-graded, refined and true to light." },
+      { property: "og:url", content: "https://motebangkoaho.lovable.app/photography" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://motebangkoaho.lovable.app/photography" }],
+    scripts: [{
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        serviceType: "Photography",
+        name: "Motebang Koaho Photography",
+        provider: { "@type": "Person", name: "Motebang Koaho", url: "https://motebangkoaho.lovable.app" },
+        areaServed: "ZA",
+        description: "Portrait, event, product, wedding and fashion photography.",
+      }),
+    }],
   }),
   component: PhotographyPage,
 });
@@ -63,6 +79,7 @@ function PhotographyPage() {
       </section>
 
       <section id="gallery" style={{ paddingTop: "3rem", background: "var(--bg)" }}>
+        <h2 className="section-title" style={{ textAlign: "center", marginBottom: "2rem" }}>Selected <em>Photographs</em></h2>
         <BehanceGrid ids={PHOTO_IDS} />
       </section>
 

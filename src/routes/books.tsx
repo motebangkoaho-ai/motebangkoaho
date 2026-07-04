@@ -4,8 +4,13 @@ export const Route = createFileRoute("/books")({
   head: () => ({
     meta: [
       { title: "Books — Motebang Koaho" },
-      { name: "description", content: "Books by Motebang Koaho. Content coming soon." },
+      { name: "description", content: "Upcoming photography and design books by Motebang Koaho. A new chapter is on the way — content coming soon." },
+      { property: "og:title", content: "Books — Motebang Koaho" },
+      { property: "og:description", content: "Upcoming photography and design books by Motebang Koaho. A new chapter is on the way — content coming soon." },
+      { property: "og:url", content: "https://motebangkoaho.lovable.app/books" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://motebangkoaho.lovable.app/books" }],
   }),
   component: BooksPage,
 });
