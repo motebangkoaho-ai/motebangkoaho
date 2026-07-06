@@ -58,6 +58,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "google-site-verification", content: "0sslk-qfBSf8s1OAap5Jcu7INaK0zK0JIwXVeR9r4jo" },
       { title: "Motebang Koaho — Photographer & Designer" },
       { name: "description", content: "Motebang Koaho, a photographer and designer based in South Africa, renowned for his bold visual style. Specializing in striking portraits, events, product photography and brand design." },
       { name: "author", content: "Motebang Koaho" },
