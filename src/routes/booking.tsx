@@ -24,10 +24,32 @@ function BookingPage() {
     setSubmitting(true);
     const d = new FormData(e.currentTarget);
     const subject = `Booking Request: ${d.get("service")} — ${d.get("firstName")} ${d.get("lastName")}`;
-    const body = `Name: ${d.get("firstName")} ${d.get("lastName")}\nEmail: ${d.get("email")}\nPhone: ${d.get("phone") || "Not provided"}\nService: ${d.get("service")}\nDate: ${d.get("date") || "Flexible"}\nBudget: ${d.get("budget") || "Not specified"}\n\n${d.get("message")}`;
+    const body = [
+      `Name: ${d.get("firstName")} ${d.get("lastName")}`,
+      `Email: ${d.get("email")}`,
+      `Phone: ${d.get("phone") || "Not provided"}`,
+      `Company / Brand: ${d.get("company") || "Not provided"}`,
+      `Website / Social: ${d.get("website") || "Not provided"}`,
+      `Service: ${d.get("service")}`,
+      `Date: ${d.get("date") || "Flexible"}`,
+      `Timeline: ${d.get("timeline") || "Not specified"}`,
+      `Location: ${d.get("location") || "Not specified"}`,
+      `Budget: ${d.get("budget") || "Not specified"}`,
+      `Deliverables: ${d.get("deliverables") || "Not specified"}`,
+      `Usage: ${d.get("usage") || "Not specified"}`,
+      `Worked with a creative before: ${d.get("experience") || "Not specified"}`,
+      `How they found me: ${d.get("referral") || "Not specified"}`,
+      "",
+      `Project details:\n${d.get("message")}`,
+      "",
+      `Goal / success looks like:\n${d.get("goals") || "Not specified"}`,
+      "",
+      `References / inspiration:\n${d.get("references") || "Not provided"}`,
+    ].join("\n");
     window.location.href = `mailto:motebangkoaho@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setTimeout(() => setSubmitting(false), 400);
   }
+
 
   return (
     <div className="booking-wrap">
@@ -57,6 +79,16 @@ function BookingPage() {
             <input id="phone" name="phone" type="tel" placeholder="0659890120" />
           </div>
         </div>
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="company">Company / Brand</label>
+            <input id="company" name="company" placeholder="Business or brand name" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="website">Website or Social Handle</label>
+            <input id="website" name="website" placeholder="@yourbrand or yoursite.com" />
+          </div>
+        </div>
         <div className="form-group">
           <label htmlFor="service">Service Required *</label>
           <select id="service" name="service" required defaultValue="">
@@ -84,6 +116,22 @@ function BookingPage() {
             <input id="date" name="date" type="date" />
           </div>
           <div className="form-group">
+            <label htmlFor="timeline">Timeline / Deadline</label>
+            <select id="timeline" name="timeline" defaultValue="">
+              <option value="">Select a timeline…</option>
+              <option value="urgent">Urgent — within 1 week</option>
+              <option value="2-4-weeks">2–4 weeks</option>
+              <option value="1-3-months">1–3 months</option>
+              <option value="flexible">Flexible / no fixed date</option>
+            </select>
+          </div>
+        </div>
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="location">Location / Venue</label>
+            <input id="location" name="location" placeholder="City, studio, or on-location" />
+          </div>
+          <div className="form-group">
             <label htmlFor="budget">Budget Range</label>
             <select id="budget" name="budget" defaultValue="">
               <option value="">Select budget range…</option>
@@ -95,10 +143,67 @@ function BookingPage() {
             </select>
           </div>
         </div>
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="deliverables">Deliverables Needed</label>
+            <select id="deliverables" name="deliverables" defaultValue="">
+              <option value="">Select deliverables…</option>
+              <option value="edited-images">Edited images only</option>
+              <option value="images-retouch">Images + advanced retouching</option>
+              <option value="logo-identity">Logo &amp; identity system</option>
+              <option value="print-ready">Print-ready artwork</option>
+              <option value="social-pack">Social media content pack</option>
+              <option value="full-campaign">Full campaign (shoot + design)</option>
+              <option value="not-sure">Not sure yet — advise me</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="usage">Intended Usage</label>
+            <select id="usage" name="usage" defaultValue="">
+              <option value="">Select usage…</option>
+              <option value="personal">Personal / private</option>
+              <option value="social">Social media</option>
+              <option value="website">Website / e-commerce</option>
+              <option value="print-ads">Print &amp; advertising</option>
+              <option value="commercial">Full commercial licence</option>
+            </select>
+          </div>
+        </div>
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="experience">Worked With a Photographer/Designer Before?</label>
+            <select id="experience" name="experience" defaultValue="">
+              <option value="">Select an answer…</option>
+              <option value="first-time">First time</option>
+              <option value="a-few-times">A few times</option>
+              <option value="regularly">Regularly / ongoing brand work</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="referral">How Did You Hear About Me?</label>
+            <select id="referral" name="referral" defaultValue="">
+              <option value="">Select a source…</option>
+              <option value="instagram">Instagram</option>
+              <option value="behance">Behance</option>
+              <option value="google">Google search</option>
+              <option value="referral">Referral from a friend or client</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
         <div className="form-group">
           <label htmlFor="message">Project Details *</label>
           <textarea id="message" name="message" rows={5} required placeholder="Tell me about your project, vision, and any specific requirements…" />
         </div>
+        <div className="form-group">
+          <label htmlFor="goals">What Does Success Look Like?</label>
+          <textarea id="goals" name="goals" rows={3} placeholder="The outcome you want — launch a brand, fill a catalogue, capture a day…" />
+        </div>
+        <div className="form-group">
+          <label htmlFor="references">References or Inspiration</label>
+          <textarea id="references" name="references" rows={3} placeholder="Links, moodboards, or work of mine you'd like to build on" />
+        </div>
+
         <button type="submit" className="submit-btn" disabled={submitting}>
           {submitting ? "Opening…" : "Send Booking Request"}
         </button>

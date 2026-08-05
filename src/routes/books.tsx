@@ -27,6 +27,19 @@ function BooksPage() {
           <p className="section-sub">
             A growing library of visual studies. The first title is out now, with more on the way.
           </p>
+          <div className="books-hero-cta">
+            <a
+              href="https://www.indigo.ca/products/patterns-and-stuff"
+              target="_blank"
+              rel="noreferrer"
+              className="books-link"
+            >
+              Buy on Indigo
+            </a>
+            <a href="/booking" className="books-link ghost">
+              Work with me
+            </a>
+          </div>
         </div>
         <div className="book-3d" aria-hidden="true">
           <div className="book">
@@ -44,29 +57,48 @@ function BooksPage() {
         </div>
       </section>
 
-      <div className="books-rule" />
-
-      <section className="books-listing">
-        <article className="books-row">
-          <div>
-            <span className="books-eyebrow">Published</span>
-            <h2 className="books-row-title">Patterns and Stuff</h2>
-            <p>
-              By Motebang Koaho — a visual study of pattern, form, and the quiet
-              structures that hold a design together.
-            </p>
-            <a
-              href="https://www.indigo.ca/products/patterns-and-stuff"
-              target="_blank"
-              rel="noreferrer"
-              className="books-link"
-            >
-              Buy on Indigo
-            </a>
-          </div>
+      <section className="books-bento">
+        <article className="bento-card bento-feature">
+          <span className="books-eyebrow">Published</span>
+          <h2 className="books-row-title">Patterns and Stuff</h2>
+          <p>
+            By Motebang Koaho — a visual study of pattern, form, and the quiet
+            structures that hold a design together.
+          </p>
           <span className="books-meta">Indigo · 2026</span>
+        </article>
+
+        <article className="bento-card">
+          <span className="bento-label">Status</span>
+          <span className="bento-value">Out now</span>
+          <p className="bento-note">Available through Indigo.</p>
+        </article>
+
+        <article className="bento-card">
+          <span className="bento-label">Titles</span>
+          <span className="bento-value">01</span>
+          <p className="bento-note">More in the works.</p>
+        </article>
+
+        <article className="bento-card bento-wide">
+          <span className="bento-label">Next up</span>
+          <span className="bento-value">In progress</span>
+          <div className="bento-spark" aria-hidden="true">
+            {[38, 62, 48, 80, 55, 92, 70, 100].map((h, i) => (
+              <i key={i} style={{ height: `${h}%` }} />
+            ))}
+          </div>
+        </article>
+
+        <article className="bento-card bento-wide">
+          <span className="bento-label">Format</span>
+          <span className="bento-value">Print</span>
+          <p className="bento-note">
+            Designed, shot and typeset in-house — printed for the shelf, not the screen.
+          </p>
         </article>
       </section>
     </div>
   );
 }
+

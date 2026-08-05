@@ -749,56 +749,139 @@ section { padding: 6rem 5%; position: relative; }
 }
 .behance-embed iframe::-webkit-scrollbar { display: none; }
 
-/* Books page */
-.books-wrap { max-width: 1200px; margin: 0 auto; padding: 8rem 2rem 6rem; }
-.books-hero {
-  display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem;
-  align-items: center; min-height: 70vh;
+/* Books page — bento dashboard layout */
+.books-wrap {
+  width: 100%; padding: 6.5rem 5% 5rem;
+  max-width: 1280px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 14px;
 }
-.books-hero-text .section-title { font-size: clamp(2.5rem, 6vw, 4.5rem); margin: 1rem 0; }
-.books-hero-text .section-sub { font-size: 1.25rem; opacity: 0.7; }
+.books-rule { display: none; }
+
+/* Hero panel */
+.books-hero {
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: 1.15fr .85fr; gap: 2rem;
+  align-items: center;
+  padding: 3.25rem 3rem;
+  border: 1px solid var(--border); border-radius: 22px;
+  background:
+    radial-gradient(120% 140% at 85% 15%, color-mix(in oklab, var(--accent) 28%, transparent) 0%, transparent 60%),
+    var(--bg2);
+}
+.books-hero-text .section-label { margin-bottom: 1rem; }
+.books-wordmark {
+  font-family: 'DM Sans', sans-serif; font-weight: 700;
+  font-size: clamp(2.6rem, 6.4vw, 5rem); line-height: .95; letter-spacing: -.035em;
+  margin: 0 0 1rem;
+}
+.books-wordmark em { font-style: italic; font-family: 'Cormorant Garamond', serif; font-weight: 400; color: var(--accent); }
+.books-hero-text .section-sub {
+  font-family: 'DM Sans', sans-serif; font-size: .98rem; opacity: .72;
+  max-width: 40ch; margin: 0 0 1.75rem;
+}
+.books-hero-cta { display: flex; gap: 10px; flex-wrap: wrap; }
+
 .book-3d { display: flex; justify-content: center; perspective: 1600px; }
 .book {
   position: relative;
-  width: 260px; height: 380px;
+  width: 210px; height: 300px;
   transform-style: preserve-3d;
-  transform: rotateY(-28deg) rotateX(6deg);
-  animation: bookFloat 6s ease-in-out infinite;
-  filter: drop-shadow(0 40px 60px rgba(0,0,0,0.45));
+  transform: rotateY(-24deg) rotateX(5deg);
+  animation: bookFloat 7s ease-in-out infinite;
 }
 @keyframes bookFloat {
-  0%,100% { transform: rotateY(-28deg) rotateX(6deg) translateY(0); }
-  50% { transform: rotateY(-24deg) rotateX(4deg) translateY(-12px); }
+  0%,100% { transform: rotateY(-24deg) rotateX(5deg) translateY(0); }
+  50% { transform: rotateY(-20deg) rotateX(3deg) translateY(-10px); }
 }
 .book-cover {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, #1a1a2a, #3a2f5c 60%, #6b4ea8);
-  border-radius: 2px 8px 8px 2px;
+  position: absolute; inset: 0; border-radius: 6px;
+  background: linear-gradient(150deg, color-mix(in oklab, var(--accent) 55%, var(--bg3)), var(--bg3));
+  border: 1px solid var(--border);
   display: flex; flex-direction: column; justify-content: space-between;
-  padding: 2rem 1.5rem; color: #fff;
-  box-shadow: inset -8px 0 16px rgba(0,0,0,0.4), inset 4px 0 8px rgba(255,255,255,0.06);
+  padding: 1.6rem 1.25rem; color: var(--text);
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.6);
 }
 .book-cover::before {
-  content: ""; position: absolute; inset: 12px;
-  border: 1px solid rgba(255,255,255,0.18); border-radius: 2px;
-  pointer-events: none;
+  content: ""; position: absolute; inset: 10px; border-radius: 3px;
+  border: 1px solid color-mix(in oklab, var(--text) 22%, transparent); pointer-events: none;
 }
-.book-title { font-size: 1.5rem; font-weight: 600; letter-spacing: 0.02em; }
-.book-author { font-size: 0.85rem; opacity: 0.75; letter-spacing: 0.15em; text-transform: uppercase; }
+.book-title {
+  font-family: 'DM Sans', sans-serif; font-size: 1.45rem; font-weight: 600;
+  line-height: 1.05; letter-spacing: -.02em;
+}
+.book-author {
+  font-family: 'DM Sans', sans-serif; font-size: .66rem; opacity: .8;
+  letter-spacing: .28em; text-transform: uppercase;
+}
 .book-spine {
   position: absolute; top: 0; left: 0;
-  width: 24px; height: 100%;
-  transform: translateX(-12px) rotateY(-90deg);
+  width: 20px; height: 100%;
+  transform: translateX(-10px) rotateY(-90deg);
   transform-origin: right center;
-  background: linear-gradient(90deg, #0e0e1a, #2a2342);
+  background: var(--bg3); border: 1px solid var(--border);
 }
 .book-pages {
-  position: absolute; top: 4px; right: -8px;
-  width: 16px; height: calc(100% - 8px);
-  background: repeating-linear-gradient(180deg, #f5f1e8 0 2px, #d8d2c2 2px 3px);
+  position: absolute; top: 3px; right: -7px;
+  width: 14px; height: calc(100% - 6px);
+  background: repeating-linear-gradient(180deg, var(--bg3) 0 2px, var(--bg2) 2px 3px);
   transform: rotateY(90deg); transform-origin: left center;
 }
-@media (max-width: 768px) {
-  .books-hero { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
-  .books-wrap { padding: 6rem 1.5rem 4rem; }
+
+/* Bento grid */
+.books-bento {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
 }
+.bento-card {
+  border: 1px solid var(--border); border-radius: 18px;
+  background: var(--bg2); padding: 1.5rem 1.6rem;
+  display: flex; flex-direction: column; gap: .6rem;
+  transition: border-color .25s, transform .25s;
+}
+.bento-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.bento-label {
+  font-family: 'DM Sans', sans-serif; font-size: .68rem; letter-spacing: .24em;
+  text-transform: uppercase; opacity: .55;
+}
+.bento-value {
+  font-family: 'DM Sans', sans-serif; font-weight: 600; letter-spacing: -.03em;
+  font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1;
+}
+.bento-note { font-size: .82rem; opacity: .6; margin: 0; }
+.bento-wide { grid-column: span 2; }
+.bento-feature { grid-column: span 4; }
+@media (min-width: 900px) { .bento-feature { grid-column: span 2; } }
+.bento-feature .books-eyebrow {
+  font-size: .68rem; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--accent);
+}
+.books-row-title {
+  font-family: 'DM Sans', sans-serif; font-weight: 600; letter-spacing: -.03em;
+  font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.05; margin: .2rem 0 .6rem;
+}
+.bento-feature p { font-size: .92rem; opacity: .7; margin: 0 0 1.2rem; max-width: 46ch; }
+.books-meta { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; opacity: .5; }
+.books-link {
+  font-family: 'DM Sans', sans-serif; font-size: .74rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--bg); background: var(--accent);
+  border: 1px solid var(--accent); border-radius: 999px;
+  padding: .8rem 1.5rem; display: inline-block; transition: .25s; align-self: flex-start;
+}
+.books-link:hover { filter: brightness(1.12); }
+.books-link.ghost { background: transparent; color: var(--text); border-color: var(--border); }
+.books-link.ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.bento-spark { display: flex; align-items: flex-end; gap: 5px; height: 46px; margin-top: auto; }
+.bento-spark i {
+  flex: 1; border-radius: 3px 3px 0 0;
+  background: color-mix(in oklab, var(--accent) 60%, transparent);
+}
+
+@media (max-width: 900px) {
+  .books-hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 1.5rem; text-align: center; }
+  .books-hero-text .section-sub { margin: 0 auto 1.5rem; }
+  .books-hero-cta { justify-content: center; }
+  .books-bento { grid-template-columns: repeat(2, 1fr); }
+  .bento-feature, .bento-wide { grid-column: span 2; }
+}
+
+
