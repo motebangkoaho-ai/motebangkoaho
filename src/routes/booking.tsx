@@ -24,10 +24,32 @@ function BookingPage() {
     setSubmitting(true);
     const d = new FormData(e.currentTarget);
     const subject = `Booking Request: ${d.get("service")} — ${d.get("firstName")} ${d.get("lastName")}`;
-    const body = `Name: ${d.get("firstName")} ${d.get("lastName")}\nEmail: ${d.get("email")}\nPhone: ${d.get("phone") || "Not provided"}\nService: ${d.get("service")}\nDate: ${d.get("date") || "Flexible"}\nBudget: ${d.get("budget") || "Not specified"}\n\n${d.get("message")}`;
+    const body = [
+      `Name: ${d.get("firstName")} ${d.get("lastName")}`,
+      `Email: ${d.get("email")}`,
+      `Phone: ${d.get("phone") || "Not provided"}`,
+      `Company / Brand: ${d.get("company") || "Not provided"}`,
+      `Website / Social: ${d.get("website") || "Not provided"}`,
+      `Service: ${d.get("service")}`,
+      `Date: ${d.get("date") || "Flexible"}`,
+      `Timeline: ${d.get("timeline") || "Not specified"}`,
+      `Location: ${d.get("location") || "Not specified"}`,
+      `Budget: ${d.get("budget") || "Not specified"}`,
+      `Deliverables: ${d.get("deliverables") || "Not specified"}`,
+      `Usage: ${d.get("usage") || "Not specified"}`,
+      `Worked with a creative before: ${d.get("experience") || "Not specified"}`,
+      `How they found me: ${d.get("referral") || "Not specified"}`,
+      "",
+      `Project details:\n${d.get("message")}`,
+      "",
+      `Goal / success looks like:\n${d.get("goals") || "Not specified"}`,
+      "",
+      `References / inspiration:\n${d.get("references") || "Not provided"}`,
+    ].join("\n");
     window.location.href = `mailto:motebangkoaho@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setTimeout(() => setSubmitting(false), 400);
   }
+
 
   return (
     <div className="booking-wrap">
