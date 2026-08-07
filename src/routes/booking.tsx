@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 
+import { supabase } from "@/integrations/supabase/client";
+
 export const Route = createFileRoute("/booking")({
   head: () => ({
     meta: [
@@ -10,45 +12,66 @@ export const Route = createFileRoute("/booking")({
       { property: "og:description", content: "Request a portrait, event, product, wedding, or design booking with Motebang Koaho. Reply within 24 hours." },
       { property: "og:url", content: "https://motebangkoaho.lovable.app/booking" },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://motebangkoaho.lovable.app/booking" }],
   }),
   component: BookingPage,
 });
 
+function str(v: FormDataEntryValue | null, max = 2000) {
+  return typeof v === "string" ? v.trim().slice(0, max) || null : null;
+}
+
 function BookingPage() {
   const [submitting, setSubmitting] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitting(true);
+    setError(null);
     const d = new FormData(e.currentTarget);
-    const subject = `Booking Request: ${d.get("service")} — ${d.get("firstName")} ${d.get("lastName")}`;
-    const body = [
-      `Name: ${d.get("firstName")} ${d.get("lastName")}`,
-      `Email: ${d.get("email")}`,
-      `Phone: ${d.get("phone") || "Not provided"}`,
-      `Company / Brand: ${d.get("company") || "Not provided"}`,
-      `Website / Social: ${d.get("website") || "Not provided"}`,
-      `Service: ${d.get("service")}`,
-      `Date: ${d.get("date") || "Flexible"}`,
-      `Timeline: ${d.get("timeline") || "Not specified"}`,
-      `Location: ${d.get("location") || "Not specified"}`,
-      `Budget: ${d.get("budget") || "Not specified"}`,
-      `Deliverables: ${d.get("deliverables") || "Not specified"}`,
-      `Usage: ${d.get("usage") || "Not specified"}`,
-      `Worked with a creative before: ${d.get("experience") || "Not specified"}`,
-      `How they found me: ${d.get("referral") || "Not specified"}`,
-      "",
-      `Project details:\n${d.get("message")}`,
-      "",
-      `Goal / success looks like:\n${d.get("goals") || "Not specified"}`,
-      "",
-      `References / inspiration:\n${d.get("references") || "Not provided"}`,
-    ].join("\n");
-    window.location.href = `mailto:motebangkoaho@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setTimeout(() => setSubmitting(false), 400);
+
+    const payload = {
+      first_name: str(d.get("firstName"), 100) ?? "",
+      last_name: str(d.get("lastName"), 100) ?? "",
+      email: str(d.get("email"), 255) ?? "",
+      phone: str(d.get("phone"), 50),
+      company: str(d.get("company"), 150),
+      website: str(d.get("website"), 255),
+      service: str(d.get("service"), 100) ?? "",
+      preferred_date: str(d.get("date"), 20),
+      timeline: str(d.get("timeline"), 100),
+      location: str(d.get("location"), 200),
+      budget: str(d.get("budget"), 100),
+      deliverables: str(d.get("deliverables"), 200),
+      usage: str(d.get("usage"), 200),
+      experience: str(d.get("experience"), 100),
+      referral: str(d.get("referral"), 100),
+      message: str(d.get("message"), 4000) ?? "",
+      goals: str(d.get("goals"), 2000),
+      reference_links: str(d.get("references"), 2000),
+    };
+
+    if (!payload.first_name || !payload.last_name || !payload.email || !payload.service || !payload.message) {
+      setSubmitting(false);
+      setError("Please complete all required fields.");
+      return;
+    }
+
+    const { error: err } = await supabase.from("bookings").insert(payload);
+    setSubmitting(false);
+    if (err) {
+      setError("Something went wrong sending your request. Please try again or email motebangkoaho@gmail.com.");
+      return;
+    }
+    setSent(true);
+    e.currentTarget.reset();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
+
 
 
   return (
