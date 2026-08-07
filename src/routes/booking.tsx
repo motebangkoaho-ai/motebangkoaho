@@ -231,8 +231,9 @@ function BookingPage() {
         </div>
 
         <button type="submit" className="submit-btn" disabled={submitting}>
-          {submitting ? "Opening…" : "Send Booking Request"}
+          {submitting ? "Sending…" : "Send Booking Request"}
         </button>
+
       </form>
 
       <div className="contact-row">
