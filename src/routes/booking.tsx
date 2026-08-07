@@ -80,7 +80,10 @@ function BookingPage() {
         <span className="section-label">Get in Touch</span>
         <h1 className="section-title">Book a <em>Session</em></h1>
         <p className="section-sub">Fill out the form and I'll get back to you within 24 hours.</p>
+        {sent && <p className="form-success">Thank you — your booking request has been received. I'll reply within 24 hours.</p>}
+        {error && <p className="form-error">{error}</p>}
       </div>
+
       <form className="booking-form" onSubmit={onSubmit}>
         <div className="form-row">
           <div className="form-group">
