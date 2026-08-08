@@ -873,6 +873,18 @@ section { padding: 6rem 5%; position: relative; }
 .bento-spark { display: flex; align-items: flex-end; gap: 5px; height: 46px; margin-top: auto; }
 .bento-spark i {
   flex: 1; border-radius: 3px 3px 0 0;
+  background: color-mix(in oklab, var(--accent) 60%, transparent);
+}
+
+@media (max-width: 900px) {
+  .books-hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 1.5rem; text-align: center; }
+  .books-hero-text .section-sub { margin: 0 auto 1.5rem; }
+  .books-hero-cta { justify-content: center; }
+  .books-bento { grid-template-columns: repeat(2, 1fr); }
+  .bento-feature, .bento-wide { grid-column: span 2; }
+}
+
+
 
 /* ---- Auth + admin dashboard ---- */
 .form-error,
@@ -957,6 +969,19 @@ section { padding: 6rem 5%; position: relative; }
 }
 
 /* Discreet admin login affordance in the footer */
+.footer-admin-link-group { display: inline-flex; gap: 0.9rem; align-items: center; }
+.footer-admin-link {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted, #8a8a8a);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.footer-admin-link:hover { color: var(--accent, #c8a45c); border-bottom-color: currentColor; }
+.footer-admin-link.as-button { background: none; border: 0; cursor: pointer; padding: 0; font-family: inherit; }
+
 .footer-admin-link-group { display: inline-flex; gap: 0.9rem; align-items: center; }
 .footer-admin-link {
   font-size: 0.72rem;
