@@ -81,37 +81,37 @@
     <div class="contact-item"><span class="ci-label">Behance</span><p>behance.net/euphoriaheart</p></div>
   </div>
 </div>
+<script src="supabase-lite.js"></script>
 <script>
-document.getElementById('bookForm').addEventListener('submit', function(e){
+document.getElementById('bookForm').addEventListener('submit', async function(e){
   e.preventDefault();
-  const d = new FormData(e.currentTarget);
-  const g = k => d.get(k) || 'Not specified';
-  const subject = 'Booking Request: '+d.get('service')+' — '+d.get('firstName')+' '+d.get('lastName');
-  const body = [
-    'Name: '+d.get('firstName')+' '+d.get('lastName'),
-    'Email: '+d.get('email'),
-    'Phone: '+g('phone'),
-    'Company / Brand: '+g('company'),
-    'Website / Social: '+g('website'),
-    'Service: '+d.get('service'),
-    'Date: '+(d.get('date')||'Flexible'),
-    'Timeline: '+g('timeline'),
-    'Location: '+g('location'),
-    'Budget: '+g('budget'),
-    'Deliverables: '+g('deliverables'),
-    'Usage: '+g('usage'),
-    'Worked with a creative before: '+g('experience'),
-    'How they found me: '+g('referral'),
-    '',
-    'Project details:\n'+d.get('message'),
-    '',
-    'Goal / success looks like:\n'+g('goals'),
-    '',
-    'References / inspiration:\n'+(d.get('references')||'Not provided')
-  ].join('\n');
-  window.location.href = 'mailto:motebangkoaho@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  const form = e.currentTarget;
+  const d = new FormData(form);
+  const v = k => (d.get(k) || '').toString().trim() || null;
+  const btn = form.querySelector('.submit-btn');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  const payload = {
+    first_name: v('firstName'), last_name: v('lastName'), email: v('email'), phone: v('phone'),
+    company: v('company'), website: v('website'), service: v('service'), preferred_date: v('date') || null,
+    timeline: v('timeline'), location: v('location'), budget: v('budget'), deliverables: v('deliverables'),
+    usage: v('usage'), experience: v('experience'), referral: v('referral'), message: v('message'),
+    goals: v('goals'), reference_links: v('references')
+  };
+  let note = document.getElementById('formNote');
+  if (!note) { note = document.createElement('p'); note.id = 'formNote'; form.appendChild(note); }
+  try {
+    await sb.rest('bookings', { method: 'POST', body: payload, headers: { Prefer: 'return=minimal' } });
+    note.className = 'form-success';
+    note.textContent = "Thanks — your request was received. I'll be in touch within 24 hours.";
+    form.reset();
+  } catch (err) {
+    note.className = 'form-error';
+    note.textContent = 'Could not send: ' + err.message + ' — please email motebangkoaho@gmail.com.';
+  }
+  btn.disabled = false; btn.textContent = 'Send Booking Request';
 });
 </script></main>
+
 
 
 <footer class="site-footer">
