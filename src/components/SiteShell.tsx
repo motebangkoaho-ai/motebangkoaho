@@ -1,5 +1,44 @@
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
+import { supabase } from "@/integrations/supabase/client";
+
+function AdminLink() {
+  const [signedIn, setSignedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => setSignedIn(!!data.user));
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) =>
+      setSignedIn(!!session?.user),
+    );
+    return () => sub.subscription.unsubscribe();
+  }, []);
+
+  if (!signedIn) {
+    return (
+      <Link to="/auth" className="footer-admin-link">
+        Admin login
+      </Link>
+    );
+  }
+  return (
+    <span className="footer-admin-link-group">
+      <Link to="/admin" className="footer-admin-link">
+        Dashboard
+      </Link>
+      <button
+        type="button"
+        className="footer-admin-link as-button"
+        onClick={async () => {
+          await supabase.auth.signOut();
+          navigate({ to: "/", replace: true });
+        }}
+      >
+        Sign out
+      </button>
+    </span>
+  );
+}
 
 const navItems = [
   { to: "/", label: "Home" },
