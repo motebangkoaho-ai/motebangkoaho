@@ -967,3 +967,17 @@ section { padding: 6rem 5%; position: relative; }
   .admin-body dl { grid-template-columns: 1fr; gap: 0.15rem 0; }
   .admin-body dd { margin-bottom: 0.6rem; }
 }
+
+/* Discreet admin login affordance in the footer */
+.footer-admin-link-group { display: inline-flex; gap: 0.9rem; align-items: center; }
+.footer-admin-link {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted, #8a8a8a);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.footer-admin-link:hover { color: var(--accent, #c8a45c); border-bottom-color: currentColor; }
+.footer-admin-link.as-button { background: none; border: 0; cursor: pointer; padding: 0; font-family: inherit; }
