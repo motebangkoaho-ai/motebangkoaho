@@ -885,3 +885,135 @@ section { padding: 6rem 5%; position: relative; }
 }
 
 
+
+/* ---- Auth + admin dashboard ---- */
+.form-error,
+.form-success {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  border: 1px solid currentColor;
+}
+.form-error { color: #e05252; }
+.form-success { color: var(--accent, #c9a227); }
+
+.link-btn {
+  margin-top: 1rem;
+  background: none;
+  border: none;
+  color: var(--accent, #c9a227);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0;
+}
+.link-btn:hover { text-decoration: underline; }
+
+.admin-list { display: grid; gap: 1rem; margin-top: 2rem; }
+.admin-card {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+}
+.admin-card.is-new { border-color: var(--accent, #c9a227); }
+.admin-card > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+}
+.admin-card h2 { font-size: 1.05rem; margin: 0; }
+.admin-card > header p {
+  margin: 0.25rem 0 0;
+  font-size: 0.78rem;
+  opacity: 0.7;
+  text-transform: capitalize;
+}
+.admin-status {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  padding: 0.25rem 0.6rem;
+  color: var(--accent, #c9a227);
+  white-space: nowrap;
+}
+.admin-body { padding: 0 1.25rem 1.25rem; }
+.admin-body dl {
+  display: grid;
+  grid-template-columns: minmax(120px, 170px) 1fr;
+  gap: 0.4rem 1rem;
+  margin: 0 0 1.25rem;
+  font-size: 0.85rem;
+}
+.admin-body dt { opacity: 0.55; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.08em; }
+.admin-body dd { margin: 0; white-space: pre-wrap; }
+.admin-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.admin-actions button {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: inherit;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.admin-actions button:hover { border-color: var(--accent, #c9a227); color: var(--accent, #c9a227); }
+@media (max-width: 640px) {
+  .admin-body dl { grid-template-columns: 1fr; gap: 0.15rem 0; }
+  .admin-body dd { margin-bottom: 0.6rem; }
+}
+
+/* Discreet admin login affordance in the footer */
+.footer-admin-link-group { display: inline-flex; gap: 0.9rem; align-items: center; }
+.footer-admin-link {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted, #8a8a8a);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.footer-admin-link:hover { color: var(--accent, #c8a45c); border-bottom-color: currentColor; }
+.footer-admin-link.as-button { background: none; border: 0; cursor: pointer; padding: 0; font-family: inherit; }
+
+.footer-admin-link-group { display: inline-flex; gap: 0.9rem; align-items: center; }
+.footer-admin-link {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted, #8a8a8a);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.footer-admin-link:hover { color: var(--accent, #c8a45c); border-bottom-color: currentColor; }
+.footer-admin-link.as-button { background: none; border: 0; cursor: pointer; padding: 0; font-family: inherit; }
+
+.footer-admin-link-group { display: inline-flex; gap: 0.9rem; align-items: center; }
+.footer-admin-link {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted, #8a8a8a);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.footer-admin-link:hover { color: var(--accent, #c8a45c); border-bottom-color: currentColor; }
+.footer-admin-link.as-button { background: none; border: 0; cursor: pointer; padding: 0; font-family: inherit; }
+
+.footer-admin-link { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; text-decoration: none; color: inherit; }
+.footer-admin-link:hover { opacity: 1; }
+.admin-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.admin-meta { display: block; font-size: 0.75rem; opacity: 0.6; margin-top: 0.25rem; }
+.admin-status { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.8; }
+.admin-body p { font-size: 0.85rem; margin: 0.4rem 0; opacity: 0.85; }
+.admin-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+.admin-actions button { font: inherit; font-size: 0.75rem; padding: 0.4rem 0.8rem; background: transparent; color: inherit; border: 1px solid currentColor; opacity: 0.7; cursor: pointer; }
+.admin-actions button:hover { opacity: 1; }

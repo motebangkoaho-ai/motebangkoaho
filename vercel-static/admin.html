@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bookings Dashboard — Motebang Koaho</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css" />
+</head>
+<body>
+<div class="scroll-bg"></div>
+<div class="scroll-grid"></div>
+
+<nav class="site-nav">
+  <a href="index.html" class="logo">Motebang <span>Koaho</span></a>
+  <div class="nav-right">
+    <button type="button" class="theme-toggle" aria-label="Toggle theme" id="themeBtn"></button>
+  </div>
+</nav>
+
+<main>
+<div class="booking-wrap">
+  <div class="booking-header">
+    <span class="section-label">Dashboard</span>
+    <h1 class="section-title">Booking <em>Requests</em></h1>
+    <p class="section-sub" id="count">Loading…</p>
+    <button type="button" class="link-btn" id="signout">Sign out</button>
+  </div>
+  <p class="form-error" id="err" hidden></p>
+  <div class="admin-list" id="list"></div>
+</div>
+</main>
+
+<script src="supabase-lite.js"></script>
+<script>
+if (!sb.token()) location.href = 'auth.html';
+var listEl = document.getElementById('list');
+var errEl = document.getElementById('err');
+
+function esc(v){ return (v == null || v === '') ? '—' : String(v).replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
+
+function render(rows){
+  document.getElementById('count').textContent = rows.length + ' request' + (rows.length === 1 ? '' : 's');
+  listEl.innerHTML = rows.map(function(b){
+    return '<article class="admin-card" data-id="' + b.id + '">' +
+      '<header class="admin-card-head"><div><strong>' + esc(b.first_name) + ' ' + esc(b.last_name) + '</strong>' +
+      '<span class="admin-meta">' + esc(b.service) + ' · ' + new Date(b.created_at).toLocaleDateString() + '</span></div>' +
+      '<span class="admin-status">' + esc(b.status) + '</span></header>' +
+      '<div class="admin-body">' +
+      '<p><strong>Email:</strong> ' + esc(b.email) + ' &nbsp; <strong>Phone:</strong> ' + esc(b.phone) + '</p>' +
+      '<p><strong>Company:</strong> ' + esc(b.company) + ' &nbsp; <strong>Website:</strong> ' + esc(b.website) + '</p>' +
+      '<p><strong>Date:</strong> ' + esc(b.preferred_date) + ' &nbsp; <strong>Timeline:</strong> ' + esc(b.timeline) + ' &nbsp; <strong>Location:</strong> ' + esc(b.location) + '</p>' +
+      '<p><strong>Budget:</strong> ' + esc(b.budget) + ' &nbsp; <strong>Usage:</strong> ' + esc(b.usage) + '</p>' +
+      '<p><strong>Deliverables:</strong> ' + esc(b.deliverables) + '</p>' +
+      '<p><strong>Details:</strong> ' + esc(b.message) + '</p>' +
+      '<p><strong>Goals:</strong> ' + esc(b.goals) + '</p>' +
+      '<p><strong>References:</strong> ' + esc(b.reference_links) + '</p>' +
+      '<p><strong>Referral:</strong> ' + esc(b.referral) + ' &nbsp; <strong>Experience:</strong> ' + esc(b.experience) + '</p>' +
+      '<div class="admin-actions">' +
+      '<button type="button" data-act="contacted">Mark contacted</button>' +
+      '<button type="button" data-act="booked">Mark booked</button>' +
+      '<button type="button" data-act="delete">Delete</button>' +
+      '</div></div></article>';
+  }).join('');
+}
+
+async function load(){
+  try {
+    var rows = await sb.rest('bookings?select=*&order=created_at.desc');
+    render(rows);
+  } catch (e) {
+    errEl.textContent = e.message;
+    errEl.hidden = false;
+    document.getElementById('count').textContent = '';
+  }
+}
+load();
+
+listEl.addEventListener('click', async function(e){
+  var btn = e.target.closest('button[data-act]');
+  if (!btn) return;
+  var card = btn.closest('.admin-card');
+  var id = card.getAttribute('data-id');
+  try {
+    if (btn.dataset.act === 'delete') {
+      await sb.rest('bookings?id=eq.' + id, { method: 'DELETE' });
+      card.remove();
+    } else {
+      await sb.rest('bookings?id=eq.' + id, { method: 'PATCH', body: { status: btn.dataset.act } });
+      card.querySelector('.admin-status').textContent = btn.dataset.act;
+    }
+  } catch (e2) { errEl.textContent = e2.message; errEl.hidden = false; }
+});
+
+document.getElementById('signout').addEventListener('click', function(){ sb.signOut(); location.href = 'auth.html'; });
+document.getElementById('themeBtn').addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark';});
+</script>
+</body>
+</html>
