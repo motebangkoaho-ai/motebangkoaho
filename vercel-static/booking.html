@@ -30,7 +30,7 @@
 <div class="booking-wrap">
   <div class="booking-header">
     <span class="section-label">Get in Touch</span>
-    <h2 class="section-title">Book a <em>Session</em></h2>
+    <h1 class="section-title">Book a <em>Session</em></h1>
     <p class="section-sub">Fill out the form and I'll get back to you within 24 hours.</p>
   </div>
   <form class="booking-form" id="bookForm">
@@ -106,7 +106,7 @@ document.getElementById('bookForm').addEventListener('submit', async function(e)
     form.reset();
   } catch (err) {
     note.className = 'form-error';
-    note.textContent = 'Could not send: ' + err.message + ' — please email motebangkoaho@gmail.com.';
+    note.textContent = 'Your request could not be saved. Please check your connection and try again.';
   }
   btn.disabled = false; btn.textContent = 'Send Booking Request';
 });
