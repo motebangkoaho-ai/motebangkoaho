@@ -15,7 +15,7 @@
 <div class="scroll-grid"></div>
 
 <nav class="site-nav">
-  <a href="index.html" class="logo">Motebang <span>Koaho</span></a>
+  <a href="/" class="logo">Motebang <span>Koaho</span></a>
   <div class="nav-right">
     <button type="button" class="theme-toggle" aria-label="Toggle theme" id="themeBtn"></button>
   </div>
@@ -36,7 +36,7 @@
 
 <script src="supabase-lite.js"></script>
 <script>
-if (!sb.token()) location.href = 'auth.html';
+if (!sb.token()) location.replace('/auth');
 var listEl = document.getElementById('list');
 var errEl = document.getElementById('err');
 
@@ -95,7 +95,7 @@ listEl.addEventListener('click', async function(e){
   } catch (e2) { errEl.textContent = e2.message; errEl.hidden = false; }
 });
 
-document.getElementById('signout').addEventListener('click', function(){ sb.signOut(); location.href = 'auth.html'; });
+document.getElementById('signout').addEventListener('click', function(){ sb.signOut(); location.replace('/auth'); });
 document.getElementById('themeBtn').addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark';});
 </script>
 </body>
